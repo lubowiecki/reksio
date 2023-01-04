@@ -1,0 +1,57 @@
+---
+import type { LocalBusiness, WithContext } from "schema-dts";
+
+const schema: WithContext<LocalBusiness> = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Gabinet Weterynaryjny - Reksio",
+  alternateName: "Weterynarz",
+  url: "http://www.reksio-wet.pl/",
+  sameAs: [
+    "https://www.facebook.com/GabinetWeterynaryjnyReksio",
+    "https://plus.google.com/105242185349666657448/about",
+  ],
+  logo: "http://www.reksio-wet.pl/images/logo-reksio.png",
+  telephone: "+48 535-454-360",
+  email: "kontakt@reksio-wet.pl",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ul. Gąbińska 24 lok. 3",
+    addressLocality: "Warszawa",
+    addressRegion: "Mazowieckie",
+    addressCountry: "Polska",
+    postalCode: "01-703",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: {
+        "@type": "DayOfWeek",
+        name: "Poniedziałek, Wtorek, Środa, Czwartek, Piątek",
+      },
+      opens: "13:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: {
+        "@type": "DayOfWeek",
+        name: "Sobota",
+      },
+      opens: "10:00",
+      closes: "14:00",
+    },
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+48 535-454-360",
+      contactType: "customer service",
+      areaServed: ["PL"],
+      availableLanguage: ["Polish"],
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>

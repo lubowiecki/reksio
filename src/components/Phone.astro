@@ -1,0 +1,30 @@
+---
+export interface Props {
+  phone: string;
+  label: string;
+}
+
+const { phone, label } = Astro.props;
+
+const getPhone = (phone: string) => `tel:${phone.replaceAll("-", "")}`;
+---
+
+<a href={getPhone(phone)}>
+  {label}:
+  <span>{phone}</span>
+</a>
+
+<style>
+  a {
+    @apply block bg-red text-white text-base text-center rounded-lg mb-6 p-2 transition-all;
+    font-size: 1.6rem;
+  }
+
+  a:hover {
+    @apply bg-red-dark;
+  }
+
+  span {
+    @apply block font-bold;
+  }
+</style>

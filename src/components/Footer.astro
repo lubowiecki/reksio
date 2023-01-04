@@ -1,0 +1,47 @@
+---
+import Menu from "./Menu.astro";
+---
+
+<footer class="footer container">
+  <Menu label="Nawigacja pomocnicza" />
+</footer>
+
+<style is:global>
+  .footer {
+    @apply flex relative bg-green-light justify-center overflow-hidden max-lg:text-center;
+    @apply md:justify-end sm:rounded-t-lg;
+  }
+
+  .footer::before,
+  .footer::after {
+    @apply bg-green block absolute;
+    content: "";
+    -webkit-mask-image: url(/img/trop.svg);
+    mask-image: url(/img/trop.svg);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    width: 40px;
+    height: 30px;
+    top: 12px;
+    left: 15px;
+    transform: rotate(35deg);
+  }
+
+  .footer::after {
+    top: 2px;
+    left: 64px;
+  }
+
+  .footer ul {
+    @apply md:flex;
+  }
+
+  .footer li {
+    @apply max-md:mb-2;
+  }
+
+  .footer a {
+    @apply block py-4 px-6;
+    @apply hover:text-white hover:bg-green-dark;
+  }
+</style>

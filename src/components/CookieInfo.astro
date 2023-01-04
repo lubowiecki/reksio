@@ -1,0 +1,61 @@
+---
+---
+
+<div id="cookieInfo" role="alert" aria-live="polite" class="cookie-info hidden">
+  <p>
+    Ta witryna używa plików cookie. Korzystając ze strony wyrażasz zgodę na
+    używanie plików cookie, zgodnie z aktualnymi ustawieniami przeglądarki.
+  </p>
+  <button aria-label="Ukryj komunikat">&#10005;</button>
+</div>
+
+<style is:global>
+  .cookie-info {
+    @apply bg-white border border-green-light max-w-5xl;
+    @apply fixed left-auto right-0 bottom-0 m-6 p-6 shadow-md;
+  }
+
+  .cookie-info button {
+    @apply bg-green-light rounded-full w-8 h-8 border;
+    @apply text-white font-bold text-sm;
+    @apply absolute -top-4 -right-4;
+    @apply flex items-center justify-center;
+    @apply hover:bg-green;
+  }
+
+  .cookie-info button::before {
+    @apply block w-12 h-12 -m-2 absolute;
+    content: "";
+  }
+</style>
+
+<script>
+  import { Is } from "@opi_pib/ts-utility";
+
+  import { booleanToString, stringToBoolean } from "../scripts/utility";
+
+  const localStorageKey: string = "cookie_info";
+
+  const isMessageClosed = (): boolean =>
+    stringToBoolean(localStorage.getItem(localStorageKey));
+
+  const toggleMessage = (el: Element) => el.classList.toggle("hidden");
+
+  const messageElement = document.querySelector("#cookieInfo");
+
+  if (Is.defined(messageElement) && !isMessageClosed()) {
+    toggleMessage(messageElement);
+    const button = messageElement.querySelector("button");
+
+    if (Is.defined(button)) {
+      button.addEventListener(
+        "click",
+        () => {
+          localStorage.setItem(localStorageKey, booleanToString(true));
+          toggleMessage(messageElement);
+        },
+        { once: true }
+      );
+    }
+  }
+</script>

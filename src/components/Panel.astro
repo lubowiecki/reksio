@@ -1,0 +1,32 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="panel">
+  <h2>{title}</h2>
+  <div class="panel__content">
+    <slot />
+  </div>
+</div>
+
+<style is:global>
+  .panel {
+    @apply rounded-lg border border-green bg-white mb-6;
+  }
+
+  .panel > h2 {
+    @apply bg-green text-white p-4;
+  }
+
+  .panel__content {
+    @apply p-4;
+  }
+
+  .panel__content a {
+    @apply text-green font-bold hover:underline;
+  }
+</style>

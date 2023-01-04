@@ -1,0 +1,23 @@
+---
+import MenuLink from "./MenuLink.astro";
+
+export interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<nav aria-label={label}>
+  <ul>
+    <li>
+      <MenuLink label="Aktualności" path="/" />
+    </li>
+    <li>
+      <MenuLink label="O nas" path="/o-nas" />
+    </li>
+    <li>
+      <MenuLink label="Kontakt" path="/kontakt" />
+    </li>
+  </ul>
+</nav>

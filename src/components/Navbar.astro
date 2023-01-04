@@ -1,0 +1,105 @@
+---
+import Menu from "./Menu.astro";
+import Logo from "./Logo.astro";
+---
+
+<header class="navbar">
+  <div class="container p-6 lg:flex lg:items-center">
+    <div class="flex items-center">
+      <Logo />
+      <button id="menu-toggle" aria-pressed="false" aria-controls="menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <span id="menu-toggle-label" class="sr-only">Otwórz menu</span>
+      </button>
+    </div>
+    <div id="menu" class="lg:ml-auto max-lg:hidden">
+      <Menu label="Główna nawigacja" />
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  .navbar {
+    @apply bg-green-light mb-12;
+  }
+
+  .navbar button {
+    @apply text-white text-lg p-2 rounded-lg block ml-auto;
+    @apply bg-green-light border border-green;
+    @apply lg:hidden;
+  }
+
+  .navbar button[aria-pressed="true"],
+  .navbar button:hover {
+    @apply bg-green;
+  }
+
+  .navbar nav {
+    @apply flex justify-center text-center;
+    @apply max-lg:mt-12;
+  }
+
+  .navbar ul {
+    @apply w-full max-lg:mt-4;
+    @apply lg:flex lg:space-x-2 lg:justify-end;
+  }
+
+  .navbar nav a {
+    @apply block text-white rounded-lg p-4 border border-green bg-green transition-colors;
+    @apply hover:bg-green-dark;
+    @apply max-lg:mb-2;
+  }
+
+  .navbar nav a[aria-current="page"] {
+    @apply text-grey border-yellow-dark bg-yellow-light;
+    @apply hover:bg-yellow;
+  }
+</style>
+
+<script>
+  import { Is } from "@opi_pib/ts-utility";
+
+  import { booleanToString, stringToBoolean } from "../scripts/utility";
+
+  const menuToggleElement = document.querySelector("#menu-toggle");
+  const menuToggleLabelElement = document.querySelector("#menu-toggle-label");
+  const menuElement = document.querySelector("#menu");
+
+  if (
+    Is.defined(menuToggleElement) &&
+    Is.defined(menuElement) &&
+    Is.defined(menuToggleLabelElement)
+  ) {
+    menuToggleElement.addEventListener("click", () => {
+      menuElement.classList.toggle("max-lg:hidden");
+
+      const isPressed = stringToBoolean(
+        menuToggleElement.getAttribute("aria-pressed")
+      );
+      menuToggleElement.setAttribute(
+        "aria-pressed",
+        booleanToString(!isPressed)
+      );
+      menuToggleLabelElement.innerHTML = isPressed
+        ? "Otwórz menu"
+        : "Zamknij menu";
+
+      const isExpanded = stringToBoolean(
+        menuElement.getAttribute("aria-expanded")
+      );
+      menuElement.setAttribute("aria-expanded", booleanToString(!isExpanded));
+    });
+  }
+</script>

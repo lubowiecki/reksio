@@ -1,0 +1,150 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Schema from "../components/Schema.astro";
+import SkipLink from "../components/SkipLink.astro";
+import CookieInfo from "../components/CookieInfo.astro";
+import Sidebar from "../components/Sidebar.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html dir="ltr" lang="pl">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+    <meta property="og:url" content="https://www.reksio-wet.pl" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gabinet weterynaryjny Reksio" />
+    <meta
+      property="og:description"
+      content="Gabinet weterynaryjny dla małych zwierząt."
+    />
+    <meta
+      property="og:image"
+      content="https://www.reksio-wet.pl/img/logo-reksio.svg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <SkipLink />
+    <Navbar />
+    <div class="container reksio-grid flex-1">
+      <main id="main">
+        <slot />
+      </main>
+      <Sidebar />
+    </div>
+    <Footer />
+    <Schema />
+    <CookieInfo />
+    <GoogleAnalytics />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    @apply h-full;
+    font-size: 10px;
+  }
+
+  body {
+    @apply text-base bg-grey-light text-grey flex flex-col min-h-full;
+  }
+
+  .reksio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0px 0px;
+    grid-template-areas:
+      "side-top"
+      "side-mid"
+      "side-bottom";
+  }
+
+  @screen md {
+    .reksio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: min-content min-content min-content;
+      gap: 0px 0px;
+      grid-template-areas:
+        "main main side-top"
+        "main main side-mid"
+        "main main side-bottom";
+    }
+  }
+
+  .reksio-grid__side-top {
+    grid-area: side-top;
+  }
+
+  .reksio-grid__side-bottom {
+    grid-area: side-bottom;
+  }
+
+  main {
+    @apply px-6 mb-10 mx-auto w-full;
+    @apply lg:max-w-screen-lg;
+    grid-area: side-mid;
+  }
+
+  @screen md {
+    main {
+      grid-area: main;
+    }
+  }
+
+  main h1 {
+    @apply text-green text-lg mb-6;
+  }
+
+  main h2 {
+    @apply text-red font-bold uppercase mb-6 flex;
+  }
+
+  main h2::before {
+    @apply block bg-green shrink-0 w-6 h-6 mt-1 mr-4;
+    content: "";
+    -webkit-mask-image: url(/img/trop.svg);
+    mask-image: url(/img/trop.svg);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+
+  main article {
+    @apply mb-12;
+  }
+
+  main article p {
+    @apply mb-6;
+  }
+
+  main article a {
+    @apply text-green font-bold hover:underline;
+  }
+
+  .container {
+    @apply lg:max-w-screen-lg mx-auto;
+  }
+</style>

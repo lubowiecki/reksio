@@ -1,0 +1,17 @@
+---
+import ArticleLink from "./ArticleLink.astro";
+
+export interface Props {
+  title?: string;
+  link?: string;
+  itemtype?: string;
+}
+
+const { title, link, itemtype } = Astro.props;
+---
+
+<article itemtype={itemtype}>
+  {title && <h2>{title}</h2>}
+  <slot />
+  {link && <ArticleLink href={link}>Czytaj więcej</ArticleLink>}
+</article>

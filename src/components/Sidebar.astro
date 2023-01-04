@@ -1,0 +1,49 @@
+---
+import Phone from "./Phone.astro";
+import Panel from "./Panel.astro";
+import Facebook from "./Facebook.astro";
+---
+
+<aside class="phones">
+  <Phone label="Gabinet" phone="576-745-600" />
+  <Phone label="Agnieszka Lubowiecka" phone="535-454-360" />
+</aside>
+<aside class="contact">
+  <Panel title="Godziny otwarcia">
+    <p>Poniedziałek - Piątek: <strong>12-19</strong></p>
+    <p>Sobota: <strong>10-14</strong></p>
+  </Panel>
+  <Panel title="Kontakt">
+    <address class="not-italic">
+      <p>ul. Gąbińska 24 lok. 3,</p>
+      <p>Warszawa 01-703</p>
+      <p>
+        E-mail:
+        <a href="mailto:kontakt@reksio-wet.pl">kontakt@reksio-wet.pl</a>
+      </p>
+    </address>
+  </Panel>
+  <Panel title="Reksio w sieci">
+    <Facebook />
+  </Panel>
+</aside>
+
+<style>
+  aside {
+    @apply px-6;
+  }
+
+  .phones {
+    grid-area: side-top;
+  }
+
+  .contact {
+    grid-area: side-bottom;
+  }
+
+  @screen md {
+    .contact {
+      grid-area: side-mid;
+    }
+  }
+</style>

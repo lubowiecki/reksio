@@ -1,0 +1,70 @@
+---
+import Article from "../components/Article.astro";
+import Root from "../layouts/Root.astro";
+---
+
+<Root
+  title="Kontakt - Gabinet Weterynaryjny Reksio - Bielany, Słodowiec - Warszawa"
+  description="Weterynarz na Bielanach! Gabinet weterynaryjny dla małych zwierząt w dzielnicy Warszawa - Bielany - pomiędzy stacjami metra: Marymont i Słodowiec. Prowadzimy sprzedaż akcesoriów dla zwierząt, karm, żwirków. W dziale Aktualności znajdują się porady lekarza weterynarii dla właścicieli."
+>
+  <h1>Kontakt</h1>
+  <Article itemtype="http://data-vocabulary.org/Organization">
+    <p>Zapraszamy Państwa do gabinetu na warszawskich Bielanach:</p>
+    <h2 itemprop="name">GABINET WETERYNARYJNY REKSIO</h2>
+    <p
+      itemprop="address"
+      itemscope=""
+      itemtype="http://data-vocabulary.org/Address"
+    >
+      <span itemprop="street-address">ul. Gąbińska 24 (obok Biedronki)</span><br
+      /><span itemprop="locality"
+        >01-703 <strong>Warszawa-Bielany</strong>
+      </span>
+    </p>
+    <p>GPS: 52.27404:20.95968</p>
+    <p itemprop="tel">Telefon: <a href="tel:535454360">535-454-360</a></p>
+    <p>
+      E-mail: <a href="mailto:kontakt@reksio-wet.pl">kontakt@reksio-wet.pl</a>
+    </p>
+  </Article>
+  <Article title="Dojazd do gabinetu:">
+    <dl>
+      <dt>Samochód</dt>
+      <dd>Przy gabinecie znajduje się parking.</dd>
+      <dt>Metro</dt>
+      <dd>
+        Gabinet znajduje się ok. 7 minut pieszo (300m) od stacji <strong
+          >Metro Słodowiec</strong
+        >.
+      </dd>
+      <dt>Tramwaj nr 35</dt>
+      <dd>
+        Gabinet znajduje się ok. 10 minut pieszo (500m) od przystanku <strong
+          >Park Olszyna</strong
+        >.
+      </dd>
+    </dl>
+    <p>
+      <a
+        href="http://jakdojade.pl?tn=Gabinet+Weterynaryjny+Reksio&td=Gabinet+weterynaryjny+dla+ma%C5%82ych+zwierz%C4%85t+w+dzielnicy+Warszawa+-+Bielany&tc=52.27225:20.96004&cid=3000"
+        target="_blank">Link w serwisie jakdojade.pl</a
+      >
+    </p>
+    <div class="aspect-w-4 aspect-h-3">
+      <iframe
+        width="425"
+        height="350"
+        src="https://maps.google.com/maps?f=q&source=s_q&hl=pl&geocode=&q=warszawa,+gabinska+24&aq=&sll=52.132198,21.073791&sspn=0.00818,0.022724&ie=UTF8&hq=&hnear=G%C4%85bi%C5%84ska+24,+Warszawa,+Mazowieckie,+Polska&t=m&z=14&ll=52.272326,20.960047&output=embed"
+      ></iframe>
+    </div>
+  </Article>
+</Root>
+
+<style>
+  dt {
+    @apply text-green font-bold;
+  }
+  dd {
+    @apply ml-8 mb-4;
+  }
+</style>

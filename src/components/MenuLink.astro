@@ -1,0 +1,21 @@
+---
+export interface Props {
+  label: string;
+  path: string;
+}
+
+const { props, url } = Astro;
+const { label, path } = Astro.props;
+
+function isCurrentPage(): boolean {
+  let pathname = url.pathname;
+
+  if (pathname !== "/") {
+    pathname = pathname.slice(0, -1);
+  }
+
+  return pathname === props.path;
+}
+---
+
+<a href={path} aria-current={isCurrentPage() ? "page" : null}>{label}</a>
