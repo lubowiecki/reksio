@@ -13,6 +13,9 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL('/img/logo-reksio.svg', Astro.url);
 ---
 
 <!DOCTYPE html>
@@ -26,7 +29,7 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <meta property="og:url" content="https://www.reksio-wet.pl" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Gabinet weterynaryjny Reksio" />
     <meta
@@ -35,7 +38,7 @@ const { title, description } = Astro.props;
     />
     <meta
       property="og:image"
-      content="https://www.reksio-wet.pl/img/logo-reksio.svg"
+      content={socialImageURL}
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,6 +47,8 @@ const { title, description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="canonical" href={canonicalURL}>
+    <meta content="Mo9xP8ovt84DUPyJAO9ac5GkB8EMGGfexFxTokdwCFo" name="google-site-verification">
   </head>
   <body>
     <SkipLink />
